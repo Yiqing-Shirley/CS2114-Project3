@@ -85,7 +85,7 @@ This feature changes the model's calculation logic and will be accessible to cus
 
 **Deferred:**
 - Delivery Tracking — not planned for Deliverable 4 because it requires additional delivery-related data and workflow.
-- 
+
 **Optional if Time Allows:**
 - Membership Priority — may be considered only after the MVP and estimated wait time feature are complete. This would require changes to queue ordering and would need additional testing.
 
