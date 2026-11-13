@@ -23,11 +23,9 @@
 - **View and Application Structure:** We implemented separate `CustomerView` and `EmployeeView` classes and added `FoodQueueApp` to start the application. This allows customers and employees to access different functions while sharing the same model through the controller.
 
 ### Model Independence
-Our model does not depend on the view or controller. `FoodQueueModel` manages orders through `OrderQueue`, `Order`, and `Node<T>`, and none of these classes reference the view.
+Our model works independently from the view and controller. It handles orders, queue operations, and input validation without depending on the view.
 
-We wrote JUnit tests that directly create and interact with model objects without using the view or controller. This allows us to test the model independently.
-
-The model-view boundary remains consistent with our original design. The model handles order data, queue operations, and order validation, while user interaction is handled separately.
+We tested the model directly using JUnit tests, and all tests passed. This shows that the model can work on its own.
 
 ### Unknowns
 **Resolved Unknowns:**
@@ -38,10 +36,10 @@ The model-view boundary remains consistent with our original design. The model h
 **Remaining Unknowns:**
 - How to detect duplicate orders and ask customers to confirm whether they want to submit another identical order.
 - How to implement estimated wait times accurately if orders have different preparation times.
-- 
+
 ### What doesnot work yet
-The current prototype supports the main MVP, including order submission, order tracking, and employee order processing. The application runs without crashing on the normal MVP path, and the tested invalid-input cases are handled.
-However, duplicate-order confirmation has not been implemented yet. Currently, customers can submit identical orders without being asked to confirm.
+The current prototype supports the main MVP, including order submission, order tracking, and employee order processing. The application runs without crashing on the normal MVP path, and invalid cases are handled.
+However, duplicate orders confirmation has not been implemented yet. 
 
 ## Next Steps
 ### Remaining MVP Work 
@@ -55,11 +53,11 @@ However, duplicate-order confirmation has not been implemented yet. Currently, c
 - Ensure that completed orders remain searchable.
 - Improve how completed orders display their queue position and orders ahead.
 - Owner: Anna (Model), Irmmuun (View).
-**Priority 3: Integration and Edge-Case Testing**
+**Priority 3: Integration and Edge Case Testing**
 - Run the complete customer and employee workflow.
 - Test invalid input, empty queues, nonexistent order numbers, and duplicate orders.
 - Fix any bugs found during integration.
-- Owner: Shirley (Integration and Testing), with all team members.
+- Owner: Yiqing (Integration and Testing), with all team members.
 
 ### Stretch Goals
 **Committed Stretch Goal: Estimated Wait Time**
@@ -91,7 +89,7 @@ This feature changes the model's calculation logic and will be accessible to cus
 **Optional if Time Allows:**
 - Membership Priority — may be considered only after the MVP and estimated wait time feature are complete. This would require changes to queue ordering and would need additional testing.
 
-### New Tests Planned for D4
+### New Tests Needed
 **Duplicate Order Confirmation**
 - Submit two orders with the same food name and category.
 - Confirm the second order and verify both are added.
@@ -121,5 +119,5 @@ This feature changes the model's calculation logic and will be accessible to cus
 | Aleysa | Controller implementation and input validation |
 | Shirley | Integration, debugging, and README documentation |
 ## GenAI Note
-We used GenAI to discuss which classes and methods might need to change for a possible priority-based order processing feature.
+We used GenAI to discuss which classes and methods might need to change for strech goals.
 We reviewed the suggestions against our project requirements and existing code. The team is responsible for verifying and testing the final implementation.
