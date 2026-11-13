@@ -56,4 +56,28 @@ public class FoodQueueController
         }
         return model.completeNextOrder();
     }
+
+
+    /**
+     * @param orderNumber the order to look up
+     * @return the order's status, or null if no order has that number
+     */
+    public String getOrderStatus(int orderNumber)
+    {
+        Order order = model.trackOrder(orderNumber);
+        if (order == null)
+        {
+            return null;
+        }
+        return order.getStatus();
+    }
+
+    /**
+     * @param orderNumber the order to look up
+     * @return the order's category, or null if not found
+     */
+    public String getOrderCategory(int orderNumber)
+    {
+        return model.getOrderCategory(orderNumber);
+    }
 }
