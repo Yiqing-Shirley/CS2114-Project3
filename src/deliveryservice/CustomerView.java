@@ -1,7 +1,7 @@
 package deliveryservice;
-import foodtracker.FoodQueueController;
-import foodtracker.Order;
+
 import java.util.Scanner;
+
 
 /**
  * CustomerView handles the customer interface for submitting orders 
