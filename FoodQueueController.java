@@ -44,4 +44,16 @@ public class FoodQueueController
         return model.getPendingOrders();
     }
     
+    /**
+     * marks the next order in line as completed
+     * @return the completed order, or null if the queue is empty
+     */
+    public Order processNextOrder()
+    {
+        if (model.getWaitingOrderCount() == 0)
+        {
+            return null;
+        }
+        return model.completeNextOrder();
+    }
 }
