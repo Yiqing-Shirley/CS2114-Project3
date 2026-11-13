@@ -22,5 +22,26 @@ public class FoodQueueController
     {
         this.model = model;
     }
+
+    //~ Public Methods ........................................................
+    /**
+     * submits a new order. Validation errors are thrown as
+     * IllegalArgumentException by the model.
+     * @param foodName name of the food
+     * @param category food category
+     * @return the newly created order
+     */
+    public Order submitOrder(String foodName, String category)
+    {
+        return model.addOrder(foodName, category);
+    }
+
+    /**
+     * @return orders waiting in the queue, in FIFO order
+     */
+    public ArrayList<Order> viewPendingOrders()
+    {
+        return model.getPendingOrders();
+    }
     
 }
