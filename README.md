@@ -13,6 +13,11 @@ We made several changes while implementing the model:
 **Tests:**
 
 ### Model Independence
+Our model does not depend on the view or controller. `FoodQueueModel` manages orders through `OrderQueue`, `Order`, and `Node<T>`, and none of these classes reference the view.
+
+We wrote JUnit tests that directly create and interact with model objects without using the view or controller. This allows us to test the model independently.
+
+The model-view boundary remains consistent with our original design. The model handles order data, queue operations, and order validation, while user interaction is handled separately.
 ### Unknowns
 **Resolved Unknowns:**
 **Remaining Unknowns:**
@@ -34,4 +39,5 @@ We made several changes while implementing the model:
 | Aleysa | Controller implementation and input validation |
 | Shirley | Integration, debugging, and README documentation |
 ## GenAI Note
-
+We used GenAI to discuss which classes and methods might need to change for a possible priority-based order processing feature.
+We reviewed the suggestions against our project requirements and existing code. The team is responsible for verifying and testing the final implementation.
