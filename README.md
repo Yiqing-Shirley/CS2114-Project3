@@ -43,16 +43,19 @@ However, duplicate orders confirmation has not been implemented yet.
 
 ## Next Steps
 ### Remaining MVP Work 
+
 **Priority 1: Duplicate Order Confirmation**
 - Detect when a customer submits an order with the same food name and category as an existing pending order.
 - Ask the customer whether they want to submit the duplicate.
 - Allow the customer to confirm or cancel without crashing.
 - Owner: Irmmuun (View), with Anna (Model) and Aleysa (Controller).
+- 
 **Priority 2: Improve Order Status Handling**
 - Verify that order status changes correctly from PENDING to IN_PROGRESS to COMPLETED.
 - Ensure that completed orders remain searchable.
 - Improve how completed orders display their queue position and orders ahead.
 - Owner: Anna (Model), Irmmuun (View).
+- 
 **Priority 3: Integration and Edge Case Testing**
 - Run the complete customer and employee workflow.
 - Test invalid input, empty queues, nonexistent order numbers, and duplicate orders.
