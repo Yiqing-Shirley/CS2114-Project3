@@ -80,4 +80,32 @@ public class FoodQueueController
     {
         return model.getOrderCategory(orderNumber);
     }
+
+
+    /**
+     * @param orderNumber the order to look up
+     * @return 1-based queue position, or -1 if not in the queue
+     */
+    public int getOrderPosition(int orderNumber)
+    {
+        return model.getOrderPosition(orderNumber);
+    }
+
+    /**
+     * @param orderNumber the order to look up
+     * @return number of orders ahead, or -1 if not in the queue
+     */
+    public int getOrdersAhead(int orderNumber)
+    {
+        return model.getOrdersAhead(orderNumber);
+    }
+
+    /**
+     * @return number of orders waiting in the queue
+     */
+    public int getWaitingOrderCount()
+    {
+        return model.getWaitingOrderCount();
+    }
 }
+
