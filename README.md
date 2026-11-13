@@ -30,6 +30,25 @@ The model-view boundary remains consistent with our original design. The model h
 
 ## Next Steps
 ### Remaining MVP Features
+### Stretch Goals
+**Committed Stretch Goal: Estimated Wait Time**
+We plan to add an estimated wait time feature in Deliverable 4. This feature will give customers an approximate waiting time based on the number of orders ahead of them.
+For the initial implementation, we will assume that each order takes approximately 5 minutes to process.
+- `FoodQueueModel`: Add `getEstimatedWaitTime(int orderNumber)` using `getOrdersAhead()`.
+- `FoodQueueController`: Add a method to retrieve the estimated wait time from the model.
+- `FoodQueueView`: Display the estimated wait time when customers track their orders.
+We will test the estimated wait time for the first order, orders with multiple orders ahead, and invalid or completed order numbers.
+
+## Potential Feature: Membership Priority
+We are also considering adding a membership priority feature if we successfully complete the remaining MVP features and estimated wait time feature.
+This feature would allow member orders to receive higher priority while maintaining FIFO ordering among orders with the same priority.
+- `Order`: Add a membership field and a getter method.
+- `FoodQueueModel`: Modify `addOrder()` and `completeNextOrder()` to support membership priority.
+- `OrderQueue`: Modify queue operations to support priority-based processing.
+- `FoodQueueController`: Update `submitOrder()` to handle membership information.
+- `FoodQueueView`: Add an option for customers to indicate their membership status.
+**Dropped or Deferred Stretch Goal: Delivery Tracking**
+We decided to defer delivery tracking so we can focus on completing the core order management features and testing the estimated wait time feature.
 
 ## Attribution
 | Team Member | Responsibilities |
