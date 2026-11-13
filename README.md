@@ -15,24 +15,33 @@
 5. Customers can submit and track orders. Employees can view pending orders and complete orders.
 
 ## Reflection:
+
 ### Changes from the Specification
+
 - **Order Status:** Our original design included an `OrderStatus` enum, but the current implementation uses a `String` field in `Order` to represent `PENDING`, `IN_PROGRESS`, and `COMPLETED`. This simplified the implementation.
+
 - **Order Lookup:** Instead of separate `getOrder()` and `getOrderStatus()` methods, we implemented `trackOrder()`, which searches both pending and completed orders. The returned `Order` provides its status through `getStatus()`.
+
 - **Input Validation:** We expanded `addOrder()` validation to reject missing food names, missing categories, and unsupported food categories. This prevents invalid order information from entering the queue.
+
 - **Tests:** We implemented JUnit tests for `Node`, `Order`, `OrderQueue`, and `FoodQueueModel`. These tests cover core queue operations, FIFO ordering, order creation, order tracking, status changes. We included empty-queue exception tests to check that the queue handles invalid operations safely.
+
 - **View and Application Structure:** We implemented separate `CustomerView` and `EmployeeView` classes and added `FoodQueueApp` to start the application. This allows customers and employees to access different functions while sharing the same model through the controller.
 
 ### Model Independence
+
 Our model works independently from the view and controller. It handles orders, queue operations, and input validation without depending on the view.
 
 We tested the model directly using JUnit tests, and all tests passed. This shows that the model can work on its own.
 
 ### Unknowns
+
 **Resolved Unknowns:**
 - We figured out how to implement FIFO ordering using a singly linked queue.
 - We established how to update order statuses and track both pending and completed orders.
 - We determined how to connect the customer and employee interfaces to the same model through the controller.
 - We implemented validation for food names, categories, and order-number input.
+
 **Remaining Unknowns:**
 - How to detect duplicate orders and ask customers to confirm whether they want to submit another identical order.
 - How to implement estimated wait times accurately if orders have different preparation times.
@@ -49,13 +58,13 @@ However, duplicate orders confirmation has not been implemented yet.
 - Ask the customer whether they want to submit the duplicate.
 - Allow the customer to confirm or cancel without crashing.
 - Owner: Irmmuun (View), with Anna (Model) and Aleysa (Controller).
-- 
+  
 **Priority 2: Improve Order Status Handling**
 - Verify that order status changes correctly from PENDING to IN_PROGRESS to COMPLETED.
 - Ensure that completed orders remain searchable.
 - Improve how completed orders display their queue position and orders ahead.
 - Owner: Anna (Model), Irmmuun (View).
-- 
+  
 **Priority 3: Integration and Edge Case Testing**
 - Run the complete customer and employee workflow.
 - Test invalid input, empty queues, nonexistent order numbers, and duplicate orders.
