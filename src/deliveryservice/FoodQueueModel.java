@@ -1,6 +1,13 @@
 package deliveryservice;
 import java.util.ArrayList;
-
+/**
+ * // -------------------------------------------------------------------------
+/**
+ *  food queue model class
+ * 
+ *  @author annak
+ *  @version Nov 12, 2026
+ */
 public class FoodQueueModel
 {
     //~ Fields ................................................................
@@ -8,6 +15,9 @@ public class FoodQueueModel
     private ArrayList<Order> completedOrders;
     private int nextOrderNumber;
     //~ Constructors ..........................................................
+    /**
+     * constructor
+     */
     public FoodQueueModel() 
     {
         orderQueue = new OrderQueue();
@@ -15,6 +25,12 @@ public class FoodQueueModel
         nextOrderNumber = 1;
     }
     //~Public  Methods ........................................................
+    /**
+     * adds order to model
+     * @param foodName
+     * @param category 
+     * @return order 
+     */
     public Order addOrder(String foodName, String category) {
         if (foodName == null || foodName.trim().isEmpty()) {
             throw new IllegalArgumentException("Food name is required.");
@@ -42,6 +58,9 @@ public class FoodQueueModel
         return newOrder;
     }
     
+    /**
+     * @return list of orders
+     */
     public ArrayList<Order> getPendingOrders() {
         ArrayList<Order> orders = new ArrayList<>();
         OrderQueue tempQueue = new OrderQueue();
@@ -59,6 +78,9 @@ public class FoodQueueModel
         return orders;
     }
     
+    /**
+     * @return completed next order
+     */
     public Order completeNextOrder() 
     {
         if (orderQueue.isEmpty()) {
@@ -72,6 +94,9 @@ public class FoodQueueModel
         return completedOrder;
     }
     
+    /**
+     * @return order that is going to be started next
+     */
     public Order startNextOrder() 
     {
         if (orderQueue.isEmpty()) {
@@ -84,6 +109,9 @@ public class FoodQueueModel
         return order;
     }
     
+    /**
+     * @return order tracking information
+     */
     public Order trackOrder(int orderNumber) 
     {
         for (Order order : getPendingOrders()) {
@@ -101,6 +129,10 @@ public class FoodQueueModel
         return null;
     }
     
+    /**
+     * @param orderNumber 
+     * @return order position
+     */
     public int getOrderPosition(int orderNumber) 
     {
         ArrayList<Order> orders = getPendingOrders();
@@ -114,6 +146,12 @@ public class FoodQueueModel
         return -1;
     }
     
+    
+    // ----------------------------------------------------------
+    /**
+     * @param orderNumber
+     * @return amount of orders ahead
+     */
     public int getOrdersAhead(int orderNumber) 
     {
         int position = getOrderPosition(orderNumber);
@@ -125,11 +163,18 @@ public class FoodQueueModel
         return position - 1;
     }
     
+    /**
+     * @return amount of orders waiting
+     */
     public int getWaitingOrderCount() 
     {
         return orderQueue.getSize();
     }
     
+    /**
+     * @param orderNumber 
+     * @return order category
+     */
     public String getOrderCategory(int orderNumber) 
     {
         Order order = trackOrder(orderNumber);

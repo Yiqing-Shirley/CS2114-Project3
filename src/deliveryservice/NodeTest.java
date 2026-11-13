@@ -3,7 +3,14 @@ package deliveryservice;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+// -------------------------------------------------------------------------
+/**
+ *  test class for node class
+ *  
+ *  @author annak
+ *  @version Nov 12, 2026
+ */
 class NodeTest
 {
 
@@ -13,6 +20,9 @@ class NodeTest
 
 
     //~ Constructors ..........................................................
+    /**
+     * tests setup
+     */
     @BeforeEach
     public void setUp() 
     {
@@ -21,12 +31,18 @@ class NodeTest
     }
     //~Public  Methods ........................................................
     
+    /**
+     * tests constructor
+     */
     @Test
     public void testConstructor() {
         assertEquals("First", node.getData());
         assertEquals(nextNode, node.getNext());
     }
 
+    /**
+     * tests constructor 
+     */
     @Test
     public void testConstructorWithoutNext() 
     {
@@ -36,18 +52,27 @@ class NodeTest
         assertNull(newNode.getNext());
     }
 
+    /**
+     * tests getter for node data
+     */
     @Test
     public void testGetData() 
     {
         assertEquals("First", node.getData());
     }
 
+    /**
+     * tests getter for next node
+     */
     @Test
     public void testGetNext() 
     {
         assertEquals(nextNode, node.getNext());
     }
 
+    /**
+     * tests set next node
+     */
     @Test
     public void testSetNext() 
     {

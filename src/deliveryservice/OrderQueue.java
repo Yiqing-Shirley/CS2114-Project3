@@ -1,4 +1,12 @@
 package deliveryservice;
+/**
+ * // -------------------------------------------------------------------------
+/**
+ *  OrderQueue class
+ * 
+ *  @author annak
+ *  @version Nov 12, 2026
+ */
 public class OrderQueue
 {
     //~ Fields ................................................................
@@ -6,6 +14,9 @@ public class OrderQueue
     private Node<Order> back;
     private int size;
     //~ Constructors ..........................................................
+    /**
+     * constructor
+     */
     public OrderQueue() 
     {
         front = null;
@@ -13,6 +24,10 @@ public class OrderQueue
         size = 0;
     }
     //~Public  Methods ........................................................
+    /**
+     * @param order 
+     * enqueues the order
+     */
     public void enqueue(Order order) 
     {
         Node<Order> newNode = new Node<>(order);
@@ -27,6 +42,10 @@ public class OrderQueue
         size++;
     }
     
+    /**
+     * dequeues the order
+     * @return order that was dequeued
+     */
     public Order dequeue() 
     {
         if (isEmpty()) {
@@ -44,6 +63,10 @@ public class OrderQueue
         return removedOrder;
     }
     
+    /**
+     * returns order on top
+     * @return order that was peeked
+     */
     public Order peek() 
     {
         if (isEmpty()) {
@@ -53,11 +76,19 @@ public class OrderQueue
         return front.getData();
     }
     
+    /**
+     * returns true if empty
+     * @return if empty
+     */
     public boolean isEmpty() 
     {
         return size == 0;
     }
     
+    /**
+     * returns size of order queue
+     * @return size
+     */
     public int getSize() 
     {
         return size;

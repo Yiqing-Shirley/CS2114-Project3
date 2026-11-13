@@ -4,6 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+/**
+ * // -------------------------------------------------------------------------
+/**
+ * food queue model test class
+ * 
+ *  @author annak
+ *  @version Nov 13, 2026
+ */
 class FoodQueueModelTest
 {
 
@@ -14,6 +22,9 @@ class FoodQueueModelTest
     private Order order2;
     private Order order3;
     //~ Constructors ..........................................................
+    /**
+    * set up method
+    */
     @BeforeEach
     public void setUp() 
     {
@@ -24,6 +35,9 @@ class FoodQueueModelTest
         order3 = model.addOrder("Cake", "dessert");
     }
     //~Public  Methods ........................................................
+   /**
+    * tests constructor
+    */
     @Test
     public void testConstructor() 
     {
@@ -32,6 +46,9 @@ class FoodQueueModelTest
         assertEquals(0, emptyModel.getWaitingOrderCount());
     }
 
+    /**
+     * tests add order
+     */
     @Test
     public void testAddOrder() 
     {
@@ -42,6 +59,9 @@ class FoodQueueModelTest
         assertEquals("PENDING", order1.getStatus());
     }
 
+    /**
+     * tests illegal arg exception of add order food name param
+     */
     @Test
     public void testAddOrderInvalidFoodName() 
     {
@@ -50,6 +70,9 @@ class FoodQueueModelTest
         });
     }
 
+    /**
+     * tests illegal arg exception of add order category param
+     */
     @Test
     public void testAddOrderInvalidCategory() 
     {
@@ -58,6 +81,9 @@ class FoodQueueModelTest
         });
     }
 
+    /**
+     * tests get pending orders
+     */
     @Test
     public void testGetPendingOrders() 
     {
@@ -69,6 +95,9 @@ class FoodQueueModelTest
         assertEquals(order3, pendingOrders.get(2));
     }
 
+    /**
+     * tests start next order
+     */
     @Test
     public void testStartNextOrder() 
     {
@@ -78,6 +107,9 @@ class FoodQueueModelTest
         assertEquals("PENDING", order2.getStatus());
     }
 
+    /**
+     * tests complete next order 
+     */
     @Test
     public void testCompleteNextOrder() 
     {
@@ -88,18 +120,27 @@ class FoodQueueModelTest
         assertEquals(2, model.getWaitingOrderCount());
     }
 
+    /**
+     * tests track order 
+     */
     @Test
     public void testTrackOrder() 
     {
         assertEquals(order2, model.trackOrder(2));
     }
 
+    /**
+     * tests track order bad input
+     */
     @Test
     public void testTrackOrderNotFound() 
     {
         assertNull(model.trackOrder(99));
     }
 
+    /**
+     * tests get order position
+     */
     @Test
     public void testGetOrderPosition() 
     {
@@ -108,6 +149,9 @@ class FoodQueueModelTest
         assertEquals(3, model.getOrderPosition(3));
     }
 
+    /**
+     * tests get orders ahead
+     */
     @Test
     public void testGetOrdersAhead() {
         assertEquals(0, model.getOrdersAhead(1));
@@ -115,6 +159,9 @@ class FoodQueueModelTest
         assertEquals(2, model.getOrdersAhead(3));
     }
 
+    /**
+     * tests get waiting order count
+     */
     @Test
     public void testGetWaitingOrderCount() 
     {
@@ -125,6 +172,9 @@ class FoodQueueModelTest
         assertEquals(2, model.getWaitingOrderCount());
     }
 
+    /**
+     * tests get order category
+     */
     @Test
     public void testGetOrderCategory() 
     {
@@ -133,6 +183,9 @@ class FoodQueueModelTest
         assertEquals("dessert", model.getOrderCategory(3));
     }
 
+    /**
+     * tests tracking on completed order
+     */
     @Test
     public void testCompletedOrderCanStillBeTracked()
     {
@@ -144,6 +197,9 @@ class FoodQueueModelTest
         assertEquals("COMPLETED", trackedOrder.getStatus());
     }
 
+    /**
+     * tests queue position on completed order
+     */
     @Test
     public void testCompletedOrderHasNoQueuePosition() 
     {

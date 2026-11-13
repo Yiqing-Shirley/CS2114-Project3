@@ -3,7 +3,14 @@ package deliveryservice;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+ * // -------------------------------------------------------------------------
+/**
+ *  test class for order queue class
+ * 
+ *  @author annak
+ *  @version Nov 12, 2026
+ */
 class OrderQueueTest
 {
 
@@ -17,6 +24,9 @@ class OrderQueueTest
 
     //~ Constructors ..........................................................
     
+    /**
+     * set up method
+     */
     @BeforeEach
     public void setUp() 
     {
@@ -29,6 +39,9 @@ class OrderQueueTest
     
     //~Public  Methods ........................................................
     
+    /**
+     * tests constructor
+     */
     @Test
     public void testConstructor() 
     {
@@ -36,6 +49,9 @@ class OrderQueueTest
         assertEquals(0, queue.getSize());
     }
 
+    /**
+     * tests enqueue method
+     */
     @Test
     public void testEnqueue() 
     {
@@ -46,6 +62,9 @@ class OrderQueueTest
         assertEquals(order1, queue.peek());
     }
 
+    /**
+     * tests dequeue method
+     */
     @Test
     public void testDequeue() 
     {
@@ -59,6 +78,9 @@ class OrderQueueTest
         assertEquals(order2, queue.peek());
     }
 
+    /**
+     * tests dequeue last order case
+     */
     @Test
     public void testDequeueLastOrder() 
     {
@@ -71,6 +93,9 @@ class OrderQueueTest
         assertEquals(0, queue.getSize());
     }
 
+    /**
+     * tests peek method
+     */
     @Test
     public void testPeek() 
     {
@@ -81,6 +106,9 @@ class OrderQueueTest
         assertEquals(2, queue.getSize());
     }
 
+    /**
+     * tests is empty method
+     */
     @Test
     public void testIsEmpty() 
     {
@@ -91,6 +119,9 @@ class OrderQueueTest
         assertFalse(queue.isEmpty());
     }
 
+    /**
+     * tests get size method
+     */
     @Test
     public void testGetSize() 
     {
@@ -107,6 +138,9 @@ class OrderQueueTest
         assertEquals(2, queue.getSize());
     }
 
+    /**
+     * tests dequeue empty queue case
+     */
     @Test
     public void testDequeueEmptyQueue() 
     {
@@ -115,6 +149,9 @@ class OrderQueueTest
         });
     }
 
+    /**
+     * tests peek empty queue case
+     */
     @Test
     public void testPeekEmptyQueue() 
     {
@@ -123,6 +160,9 @@ class OrderQueueTest
         });
     }
 
+    /**
+     * tests FIFO 
+     */
     @Test
     public void testFIFOOrder() 
     {
