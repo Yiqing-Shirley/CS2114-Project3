@@ -57,7 +57,7 @@ public class CustomerView {
 
         try {
             // Sends request to controller/model[cite: 6, 8]
-            Order order = controller.submitOrder(foodName, category);
+            Order order = controller.submitOrder(foodName, category, false);
             if (order != null) {
                 System.out.println("Order successfully submitted!");
                 System.out.println("Your Order Number: " + order.getOrderNumber());
@@ -104,8 +104,22 @@ public class CustomerView {
             System.out.println("Order Number: " + orderNumber);
             System.out.println("Category: " + category);
             System.out.println("Status: " + status);
-            System.out.println("Current Position in Queue: " + position);
-            System.out.println("Orders Ahead of You: " + ordersAhead);
+            if (status.equals("COMPLETED")) 
+            {
+
+                System.out.println("Order has been completed!");
+                System.out.println("Current Position in Queue: Not in queue");
+                System.out.println("Orders Ahead of You: 0");
+
+            }
+            else
+            {
+             
+                System.out.println("Current Position in Queue: " + position);
+                System.out.println("Orders Ahead of You: " + ordersAhead);
+
+            }
+
             System.out.println("Total Waiting Orders: " + totalWaiting);
 
         } catch (NumberFormatException e) {

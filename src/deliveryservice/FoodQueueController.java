@@ -29,11 +29,12 @@ public class FoodQueueController
      * IllegalArgumentException by the model.
      * @param foodName name of the food
      * @param category food category
+     * @param confirmed if duplicate or not
      * @return the newly created order
      */
-    public Order submitOrder(String foodName, String category)
+    public Order submitOrder(String foodName, String category, boolean confirmed)
     {
-        return model.addOrder(foodName, category);
+        return model.addOrder(foodName, category, confirmed);
     }
 
     /**
@@ -106,6 +107,17 @@ public class FoodQueueController
     public int getWaitingOrderCount()
     {
         return model.getWaitingOrderCount();
+    }
+    
+    
+    // ----------------------------------------------------------
+    /**
+     * returns the orders estimated wait time
+     * @param orderNumber
+     * @return estimated wait time in mins
+     */
+    public int getEstimatedWaitTime(int orderNumber) {
+        return model.getEstimatedWaitTime(orderNumber);
     }
 }
 
