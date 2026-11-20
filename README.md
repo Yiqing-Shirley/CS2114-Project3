@@ -32,17 +32,23 @@ Our model works independently from the view and controller. It handles orders, q
 
 We tested the model directly using JUnit tests, and all tests passed. This shows that the model can work on its own.
 
-### Unknowns
+### Challenges and Remaining Limitations
 
-**Resolved Unknowns:**
-- We figured out how to implement FIFO ordering using a singly linked queue.
-- We established how to update order statuses and track both pending and completed orders.
-- We determined how to connect the customer and employee interfaces to the same model through the controller.
-- We implemented validation for food names, categories, and order-number input.
+**Resolved Challenges:**
 
-**Remaining Unknowns:**
-- How to detect duplicate orders and ask customers to confirm whether they want to submit another identical order.
-- How to implement estimated wait times accurately if orders have different preparation times.
+- **Duplicate Order Confirmation:** We implemented duplicate detection and added the confirmation prompt so customers can confirm or cancel duplicate orders.
+
+- **Order Status Workflow:** During integration testing, we found that employees could not complete orders without starting them first. We added a separate Start Next Order option to fix this issue.
+
+- **Estimated Waiting Time:** We implemented category-based waiting time calculations and corrected the calculation to count orders ahead of the customer's order.
+
+- **Integration Testing:** We tested the complete customer and employee workflow and confirmed that invalid inputs do not crash the application.
+
+**Remaining Limitations:**
+
+- **Estimated Waiting Time Accuracy:** Our estimates use fixed preparation times for each food category rather than actual preparation times.
+
+- **Order Processing:** The current system processes one order at a time using FIFO ordering. It does not support preparing multiple orders simultaneously.
 
 ### What doesnot work yet
 The current prototype supports the main MVP, including order submission, order tracking, and employee order processing. The application runs without crashing on the normal MVP path, and invalid cases are handled.
