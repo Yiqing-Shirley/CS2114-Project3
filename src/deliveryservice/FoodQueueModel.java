@@ -299,12 +299,13 @@ public class FoodQueueModel
 
         for (Order order : getPendingOrders())
         {
+            estimatedWaitTime += getPreparationTime(order.getCategory());
             if (order.getOrderNumber() == orderNumber)
             {
                 return estimatedWaitTime;
             }
 
-            estimatedWaitTime += getPreparationTime(order.getCategory());
+            
         }
 
         return -1;
