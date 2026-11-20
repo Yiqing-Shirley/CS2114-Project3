@@ -16,17 +16,15 @@
 
 ## Reflection:
 
-### Changes from the Specification
+### Changes from D3 Predictions
 
-- **Order Status:** Our original design included an `OrderStatus` enum, but the current implementation uses a `String` field in `Order` to represent `PENDING`, `IN_PROGRESS`, and `COMPLETED`. This simplified the implementation.
+- **Estimated Waiting Time:** We updated `FoodQueueModel.java`, `FoodQueueController.java`, and `CustomerView.java` to calculate and display estimated waiting times based on the preparation times of orders ahead in the queue.
 
-- **Order Lookup:** Instead of separate `getOrder()` and `getOrderStatus()` methods, we implemented `trackOrder()`, which searches both pending and completed orders. The returned `Order` provides its status through `getStatus()`.
+- **Duplicate Order Confirmation:** We implemented duplicate detection in the model, passed the confirmation parameter through the controller, and added a confirmation prompt in the customer view.
 
-- **Input Validation:** We expanded `addOrder()` validation to reject missing food names, missing categories, and unsupported food categories. This prevents invalid order information from entering the queue.
+- **Order Status Handling:** We added a separate Start Next Order option to the employee view and controller so orders must move from `PENDING` to `IN_PROGRESS` before being marked `COMPLETED`.
 
-- **Tests:** We implemented JUnit tests for `Node`, `Order`, `OrderQueue`, and `FoodQueueModel`. These tests cover core queue operations, FIFO ordering, order creation, order tracking, status changes. We included empty-queue exception tests to check that the queue handles invalid operations safely.
-
-- **View and Application Structure:** We implemented separate `CustomerView` and `EmployeeView` classes and added `FoodQueueApp` to start the application. This allows customers and employees to access different functions while sharing the same model through the controller.
+- **Unchanged Classes:** The estimated waiting time feature did not require changes to `Node.java` or `OrderQueue.java`. Although we originally expected `EmployeeView.java` to remain unchanged, we updated it to support the order status workflow.
 
 ### Model Independence
 
