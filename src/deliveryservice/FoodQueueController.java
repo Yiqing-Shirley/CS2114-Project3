@@ -6,36 +6,45 @@ import java.util.ArrayList;
  * FoodQueueController connects the customer and employee views to the
  * FoodQueueModel. It contains no queue logic of its own.
  *
- *  @author Aleysa Sweeney
- *  @version Nov 13, 2026
+ * @author Aleysa Sweeney
+ * @version Nov 13, 2026
  */
 public class FoodQueueController
 {
-    //~ Fields ................................................................
+    // ~ Fields ................................................................
     private FoodQueueModel model;
 
-    //~ Constructors ..........................................................
+    // ~ Constructors ..........................................................
     /**
-     * @param model the model that stores and manages orders
+     * @param model
+     *            the model that stores and manages orders
      */
     public FoodQueueController(FoodQueueModel model)
     {
         this.model = model;
     }
 
-    //~ Public Methods ........................................................
+
+    // ~ Public Methods ........................................................
     /**
      * submits a new order. Validation errors are thrown as
      * IllegalArgumentException by the model.
-     * @param foodName name of the food
-     * @param category food category
-     * @param confirmed if duplicate or not
+     * 
+     * @param foodName
+     *            name of the food
+     * @param category
+     *            food category
+     * @param confirmed
+     *            if duplicate or not
      * @return the newly created order
      */
-    public Order submitOrder(String foodName, String category, boolean confirmed)
+    public
+        Order
+        submitOrder(String foodName, String category, boolean confirmed)
     {
         return model.addOrder(foodName, category, confirmed);
     }
+
 
     /**
      * @return orders waiting in the queue, in FIFO order
@@ -44,9 +53,11 @@ public class FoodQueueController
     {
         return model.getPendingOrders();
     }
-    
+
+
     /**
      * marks the next order in line as completed
+     * 
      * @return the completed order, or null if the queue is empty
      */
     public Order processNextOrder()
@@ -60,7 +71,24 @@ public class FoodQueueController
 
 
     /**
-     * @param orderNumber the order to look up
+     * Starts preparing the next pending order.
+     *
+     * @return the order being prepared, or null if the queue is empty
+     */
+    public Order startNextOrder()
+    {
+        if (model.getWaitingOrderCount() == 0)
+        {
+            return null;
+        }
+
+        return model.startNextOrder();
+    }
+
+
+    /**
+     * @param orderNumber
+     *            the order to look up
      * @return the order's status, or null if no order has that number
      */
     public String getOrderStatus(int orderNumber)
@@ -73,8 +101,10 @@ public class FoodQueueController
         return order.getStatus();
     }
 
+
     /**
-     * @param orderNumber the order to look up
+     * @param orderNumber
+     *            the order to look up
      * @return the order's category, or null if not found
      */
     public String getOrderCategory(int orderNumber)
@@ -84,7 +114,8 @@ public class FoodQueueController
 
 
     /**
-     * @param orderNumber the order to look up
+     * @param orderNumber
+     *            the order to look up
      * @return 1-based queue position, or -1 if not in the queue
      */
     public int getOrderPosition(int orderNumber)
@@ -92,14 +123,17 @@ public class FoodQueueController
         return model.getOrderPosition(orderNumber);
     }
 
+
     /**
-     * @param orderNumber the order to look up
+     * @param orderNumber
+     *            the order to look up
      * @return number of orders ahead, or -1 if not in the queue
      */
     public int getOrdersAhead(int orderNumber)
     {
         return model.getOrdersAhead(orderNumber);
     }
+
 
     /**
      * @return number of orders waiting in the queue
@@ -108,16 +142,17 @@ public class FoodQueueController
     {
         return model.getWaitingOrderCount();
     }
-    
-    
+
+
     // ----------------------------------------------------------
     /**
      * returns the orders estimated wait time
+     * 
      * @param orderNumber
      * @return estimated wait time in mins
      */
-    public int getEstimatedWaitTime(int orderNumber) {
+    public int getEstimatedWaitTime(int orderNumber)
+    {
         return model.getEstimatedWaitTime(orderNumber);
     }
 }
-

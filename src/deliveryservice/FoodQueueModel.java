@@ -1,58 +1,67 @@
 package deliveryservice;
+
 import java.util.ArrayList;
+
 /**
  * // -------------------------------------------------------------------------
-/**
- *  food queue model class
+ * /** food queue model class
  * 
- *  @author annak
- *  @version Nov 12, 2026
+ * @author annak
+ * @version Nov 12, 2026
  */
 public class FoodQueueModel
 {
-    //~ Fields ................................................................
+    // ~ Fields ................................................................
     private OrderQueue orderQueue;
     private ArrayList<Order> completedOrders;
     private int nextOrderNumber;
-    //~ Constructors ..........................................................
+
+    // ~ Constructors ..........................................................
     /**
      * constructor
      */
-    public FoodQueueModel() 
+    public FoodQueueModel()
     {
         orderQueue = new OrderQueue();
         completedOrders = new ArrayList<>();
         nextOrderNumber = 1;
     }
-    //~Public  Methods ........................................................
+
+
+    // ~Public Methods ........................................................
     /**
      * adds order to model
+     * 
      * @param foodName
-     * @param category 
-     * @param confirmedDuplicate 
-     * @return order 
+     * @param category
+     * @param confirmedDuplicate
+     * @return order
      */
-    public Order addOrder(String foodName, String category, boolean confirmedDuplicate) {
-        if (foodName == null || foodName.trim().isEmpty()) {
+    public
+        Order
+        addOrder(String foodName, String category, boolean confirmedDuplicate)
+    {
+        if (foodName == null || foodName.trim().isEmpty())
+        {
             throw new IllegalArgumentException("Food name is required.");
         }
 
-        if (category == null || category.trim().isEmpty()) {
+        if (category == null || category.trim().isEmpty())
+        {
             throw new IllegalArgumentException("Category is required.");
         }
 
         category = category.trim().toLowerCase();
         foodName = foodName.trim();
 
-        if (!category.equals("drinks") &&
-            !category.equals("breakfast") &&
-            !category.equals("lunch") &&
-            !category.equals("dinner") &&
-            !category.equals("dessert")) {
+        if (!category.equals("drinks") && !category.equals("breakfast")
+            && !category.equals("lunch") && !category.equals("dinner")
+            && !category.equals("dessert"))
+        {
 
             throw new IllegalArgumentException("Invalid food category.");
         }
-        
+
         if (isDuplicateOrder(foodName, category) && !confirmedDuplicate)
         {
             return null;
@@ -64,135 +73,153 @@ public class FoodQueueModel
 
         return newOrder;
     }
-    
+
+
     /**
      * @return list of orders
      */
-    public ArrayList<Order> getPendingOrders() {
+    public ArrayList<Order> getPendingOrders()
+    {
         ArrayList<Order> orders = new ArrayList<>();
         OrderQueue tempQueue = new OrderQueue();
 
-        while (!orderQueue.isEmpty()) {
+        while (!orderQueue.isEmpty())
+        {
             Order order = orderQueue.dequeue();
             orders.add(order);
             tempQueue.enqueue(order);
         }
 
-        while (!tempQueue.isEmpty()) {
+        while (!tempQueue.isEmpty())
+        {
             orderQueue.enqueue(tempQueue.dequeue());
         }
 
         return orders;
     }
-    
+
+
     /**
      * @return completed next order
      */
-    public Order completeNextOrder() 
+    public Order completeNextOrder()
     {
-        if (orderQueue.isEmpty()) {
+        if (orderQueue.isEmpty())
+        {
             throw new IllegalStateException("No pending orders.");
         }
 
         Order completedOrder = orderQueue.peek();
         if (!completedOrder.getStatus().equals("IN_PROGRESS"))
         {
-            throw new IllegalStateException("Order must be started before completion.");
+            throw new IllegalStateException(
+                "Order must be started before completion.");
         }
-        
+
         orderQueue.dequeue();
-        
+
         completedOrder.setStatus("COMPLETED");
         completedOrders.add(completedOrder);
 
         return completedOrder;
     }
-    
+
+
     /**
      * @return order that is going to be started next
      */
-    public Order startNextOrder() 
+    public Order startNextOrder()
     {
-        if (orderQueue.isEmpty()) {
+        if (orderQueue.isEmpty())
+        {
             throw new IllegalStateException("No pending orders.");
         }
 
         Order order = orderQueue.peek();
-        
+
         if (order.getStatus().equals("IN_PROGRESS"))
         {
             throw new IllegalStateException("Order is already in progress.");
         }
-        
+
         order.setStatus("IN_PROGRESS");
 
         return order;
     }
-    
+
+
     /**
-     * @param orderNumber 
+     * @param orderNumber
      * @return order tracking information
      */
-    public Order trackOrder(int orderNumber) 
+    public Order trackOrder(int orderNumber)
     {
-        for (Order order : getPendingOrders()) {
-            if (order.getOrderNumber() == orderNumber) {
+        for (Order order : getPendingOrders())
+        {
+            if (order.getOrderNumber() == orderNumber)
+            {
                 return order;
             }
         }
 
-        for (Order order : completedOrders) {
-            if (order.getOrderNumber() == orderNumber) {
+        for (Order order : completedOrders)
+        {
+            if (order.getOrderNumber() == orderNumber)
+            {
                 return order;
             }
         }
 
         return null;
     }
-    
+
+
     /**
-     * @param orderNumber 
+     * @param orderNumber
      * @return order position
      */
-    public int getOrderPosition(int orderNumber) 
+    public int getOrderPosition(int orderNumber)
     {
         Order order = trackOrder(orderNumber);
-        
+
         if (order == null)
         {
             return -1;
         }
-        
+
         if (order.getStatus().equals("COMPLETED"))
         {
             return 0;
         }
-        
+
         ArrayList<Order> orders = getPendingOrders();
 
-        for (int i = 0; i < orders.size(); i++) {
-            if (orders.get(i).getOrderNumber() == orderNumber) {
+        for (int i = 0; i < orders.size(); i++)
+        {
+            if (orders.get(i).getOrderNumber() == orderNumber)
+            {
                 return i + 1;
             }
         }
 
         return -1;
     }
-    
-    
+
+
     // ----------------------------------------------------------
     /**
      * @param orderNumber
      * @return amount of orders ahead
      */
-    public int getOrdersAhead(int orderNumber) 
+    public int getOrdersAhead(int orderNumber)
     {
         int position = getOrderPosition(orderNumber);
 
-        if (position == -1) {
+        if (position == -1)
+        {
             return -1;
         }
-        
+
         if (position == 0)
         {
             return 0;
@@ -200,108 +227,121 @@ public class FoodQueueModel
 
         return position - 1;
     }
-    
+
+
     /**
      * @return amount of orders waiting
      */
-    public int getWaitingOrderCount() 
+    public int getWaitingOrderCount()
     {
         return orderQueue.getSize();
     }
-    
+
+
     /**
-     * @param orderNumber 
+     * @param orderNumber
      * @return order category
      */
-    public String getOrderCategory(int orderNumber) 
+    public String getOrderCategory(int orderNumber)
     {
         Order order = trackOrder(orderNumber);
 
-        if (order == null) {
+        if (order == null)
+        {
             return null;
         }
 
         return order.getCategory();
     }
-    
+
+
     /**
      * Place a description of your method here.
+     * 
      * @param foodName
      * @param category
      * @return if dupe order or not
      */
-    public boolean isDuplicateOrder(String foodName, String category) 
+    public boolean isDuplicateOrder(String foodName, String category)
     {
         ArrayList<Order> pendingOrders = getPendingOrders();
 
-        for (Order order : pendingOrders) {
-            if (order.getFoodName().equalsIgnoreCase(foodName.trim()) &&
-                order.getCategory().equalsIgnoreCase(category.trim())) {
+        for (Order order : pendingOrders)
+        {
+            if (order.getFoodName().equalsIgnoreCase(foodName.trim())
+                && order.getCategory().equalsIgnoreCase(category.trim()))
+            {
                 return true;
             }
         }
         return false;
     }
-    
+
+
     // ----------------------------------------------------------
     /**
      * returns estimated wait time for order
+     * 
      * @param orderNumber
      * @return estimated wait time in minutes
      */
-    public int getEstimatedWaitTime(int orderNumber) 
+    public int getEstimatedWaitTime(int orderNumber)
     {
         Order targetOrder = trackOrder(orderNumber);
 
         // Completed or nonexistent orders do not have a waiting time.
-        if (targetOrder == null || targetOrder.getStatus().equals("COMPLETED")) {
+        if (targetOrder == null || targetOrder.getStatus().equals("COMPLETED"))
+        {
             return -1;
         }
 
         int estimatedWaitTime = 0;
 
-        for (Order order : getPendingOrders()) {
-            // Stop once we reach the customer's order.
-            estimatedWaitTime += getPreparationTime(order.getCategory());
-            if (order.getOrderNumber() == orderNumber) {
+        for (Order order : getPendingOrders())
+        {
+            if (order.getOrderNumber() == orderNumber)
+            {
                 return estimatedWaitTime;
             }
 
-            
+            estimatedWaitTime += getPreparationTime(order.getCategory());
         }
 
         return -1;
+
     }
+
 
     /**
      * Returns the estimated preparation time for a food category.
      *
-     * @param category the food category
+     * @param category
+     *            the food category
      * @return preparation time in minutes
      */
-    private int getPreparationTime(String category) 
+    private int getPreparationTime(String category)
     {
-        if (category.equals("drinks")) 
+        if (category.equals("drinks"))
         {
             return 5;
-        } 
-        else if (category.equals("breakfast")) 
+        }
+        else if (category.equals("breakfast"))
         {
             return 10;
-        } 
-        else if (category.equals("lunch")) 
+        }
+        else if (category.equals("lunch"))
         {
             return 15;
-        } 
-        else if (category.equals("dinner")) 
+        }
+        else if (category.equals("dinner"))
         {
             return 20;
-        } 
-        else if (category.equals("dessert")) 
+        }
+        else if (category.equals("dessert"))
         {
             return 5;
-        } 
-        else 
+        }
+        else
         {
             throw new IllegalArgumentException("Invalid food category.");
         }
