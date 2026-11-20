@@ -98,26 +98,25 @@ public class CustomerView {
             int position = controller.getOrderPosition(orderNumber);
             int ordersAhead = controller.getOrdersAhead(orderNumber);
             int totalWaiting = controller.getWaitingOrderCount();
+            int estimatedWaitTime = controller.getEstimatedWaitTime(orderNumber);
 
             // Display results to the customer[cite: 2, 4]
             System.out.println("\n--- Order Status Details ---");
             System.out.println("Order Number: " + orderNumber);
             System.out.println("Category: " + category);
             System.out.println("Status: " + status);
+            
             if (status.equals("COMPLETED")) 
             {
-
                 System.out.println("Order has been completed!");
                 System.out.println("Current Position in Queue: Not in queue");
                 System.out.println("Orders Ahead of You: 0");
-
             }
             else
             {
-             
                 System.out.println("Current Position in Queue: " + position);
                 System.out.println("Orders Ahead of You: " + ordersAhead);
-
+                System.out.println("Estimated Wait Time: " + estimatedWaitTime + " minutes");
             }
 
             System.out.println("Total Waiting Orders: " + totalWaiting);
