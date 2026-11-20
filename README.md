@@ -50,9 +50,10 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
 
 - **Order Processing:** The current system processes one order at a time using FIFO ordering. It does not support preparing multiple orders simultaneously.
 
-### What doesnot work yet
-The current prototype supports the main MVP, including order submission, order tracking, and employee order processing. The application runs without crashing on the normal MVP path, and invalid cases are handled.
-However, duplicate orders confirmation has not been implemented yet. 
+### What Still Needs Work
+- **Final Presentation:** Prepare and rehearse a three-minute demo showing order submission, duplicate confirmation, estimated waiting time, and employee order processing.
+
+- **Deferred Features:** Delivery Tracking and Membership Priority are not implemented in the current version.
 
 ## Next Steps
 ### Remaining MVP Work 
