@@ -65,9 +65,12 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
 
 ### Remaining Work 
 
-**Priority 1: Final Verification**
-- Run the complete test suite and verify the MVP and Estimated Waiting Time feature.
-- Owner: All team members.
+**Priority 1: Improve Customer Order Submission**
+- Ask customers to select a food category before placing an order.
+- Display a predefined menu based on the selected category.
+- Allow customers to select food items from the menu instead of entering arbitrary food names.
+- Validate the selected food item to prevent invalid orders.
+- Expected Changes: `CustomerView.java`, `FoodQueueModel.java`, `FoodQueueController.java`, and `FoodQueueModelTest.java`.
 
 **Priority 2: Lightning Demo and Slides**
 - Prepare a live demo showing the MVP, Estimated Waiting Time, and bad-input handling.
