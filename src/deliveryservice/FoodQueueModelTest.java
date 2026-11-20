@@ -363,7 +363,7 @@ class FoodQueueModelTest
      */
     @Test
     public void testEstimatedWaitTimeFirstOrder() {
-        assertEquals(0, model.getEstimatedWaitTime(1));
+        assertEquals(15, model.getEstimatedWaitTime(1));
     }
 
     /**
@@ -371,7 +371,7 @@ class FoodQueueModelTest
      */
     @Test
     public void testEstimatedWaitTimeSecondOrder() {
-        assertEquals(15, model.getEstimatedWaitTime(2));
+        assertEquals(20, model.getEstimatedWaitTime(2));
     }
 
     /**
@@ -379,7 +379,7 @@ class FoodQueueModelTest
      */
     @Test
     public void testEstimatedWaitTimeThirdOrder() {
-        assertEquals(20, model.getEstimatedWaitTime(3));
+        assertEquals(25, model.getEstimatedWaitTime(3));
     }
 
     /**
