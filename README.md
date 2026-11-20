@@ -115,8 +115,6 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
    - Reflect on how the team's use of GenAI evolved throughout the project.
 
 ### Attributions
-## Attribution
-
 | File | Contributor(s) | Contribution |
 |------|----------------|--------------|
 | `Node.java` | Anna | Implemented the node structure for the linked queue. |
