@@ -73,7 +73,7 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
 - Submit the final source code, tests, README, and individual writeups.
 - Owner: Final Submission Yiqing, Individual writesups all members.
 
-### Stretch Goals
+
 ### Stretch Goal Status
 
 **Completed: Estimated Waiting Time**
@@ -92,13 +92,13 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
 
 - Not implemented because it would require changing FIFO queue behavior and additional testing.
 
-## Attribution
-| Team Member | Responsibilities |
-|---|---|
-| Anna | Model implementation, model tests, and model fixes |
-| Irmuun | View implementation and display updates |
-| Aleysa | Controller implementation and input validation |
-| Yiqing | Integration, debugging, and README documentation |
+
+### Contributions
+- **Anna:** Implemented duplicate order handling, improved order status logic, and established the framework for estimated waiting time.
+- **Irmuun:** Completed the estimated waiting time calculation in the model and updated the customer view to display it.
+- **Aleysa:** Added JUnit tests for estimated waiting time and newly implemented methods.
+- **Yiqing:** Integrated the new features, updated the controller, added additional JUnit tests, and updated the README documentation.
+- 
 ## GenAI Note
 We used GenAI to discuss which classes and methods might need to change for strech goals.
 We reviewed the suggestions against our project requirements and existing code. The team is responsible for verifying and testing the final implementation.
