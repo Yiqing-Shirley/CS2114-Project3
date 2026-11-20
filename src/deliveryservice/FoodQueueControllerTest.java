@@ -231,4 +231,31 @@ public class FoodQueueControllerTest
         controller.processNextOrder();
         assertEquals(2, controller.getWaitingOrderCount());
     }
+
+        /**
+     * A later order in the queue has a longer estimated wait than
+     * an earlier one.
+     */
+    @Test
+    public void testGetEstimatedWaitTimeIncreasesWithQueuePosition()
+    {
+        Order a = controller.submitOrder("Pancakes", "Breakfast", false);
+        Order b = controller.submitOrder("Smoothie", "Drinks", false);
+
+        assertTrue(controller.getEstimatedWaitTime(b.getOrderNumber())
+            > controller.getEstimatedWaitTime(a.getOrderNumber()));
+    }
+
+    /**
+     * A confirmed duplicate order is added to the pending list.
+     */
+    @Test
+    public void testSubmitConfirmedDuplicateIsAdded()
+    {
+        controller.submitOrder("Pancakes", "Breakfast", false);
+        controller.submitOrder("Pancakes", "Breakfast", true);
+
+        assertEquals(2, controller.viewPendingOrders().size());
+    }
+    
 }
