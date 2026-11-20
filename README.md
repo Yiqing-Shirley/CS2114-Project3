@@ -32,6 +32,12 @@ Our model works independently from the view and controller. It handles orders, q
 
 We tested the model directly using JUnit tests, and all tests passed. This shows that the model can work on its own.
 
+### Future Design Improvements
+
+- **Order Status Management:** We could centralize order status transitions in the model to make future workflow changes easier.
+
+- **Estimated Waiting Time:** We could separate preparation time estimates from the model's queue logic, allowing future changes without modifying the queue implementation.
+
 ### Challenges and Remaining Limitations
 
 **Resolved Challenges:**
@@ -114,7 +120,7 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
    - Discuss what worked well and what was challenging with MVC.
    - Reflect on how the team's use of GenAI evolved throughout the project.
 
-### Attributions
+## Attributions
 | File | Contributor(s) | Contribution |
 |------|----------------|--------------|
 | `Node.java` | Anna | Implemented the node structure for the linked queue. |
@@ -127,7 +133,7 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
 | `FoodQueueApp.java` | Yiqing | Implemented the main application entry point and connected the MVC components. |
 | `NodeTest.java` | Anna | Wrote tests for node operations. |
 | `OrderTest.java` | Anna, Yiqing | Wrote tests for order properties and status changes. |
-| `OrderQueueTest.java` | Anna, Yiqing | Implemented queue tests; Shirley added interleaved enqueue/dequeue tests to verify FIFO ordering. |
+| `OrderQueueTest.java` | Anna, Yiqing | Implemented queue tests; Yiqing added interleaved enqueue and dequeue tests to verify FIFO ordering. |
 | `FoodQueueModelTest.java` | Aleysa, Yiqing | Aleysa added estimated waiting time and new method tests; Yiqing added additional tests and supported integration testing. |
 
 
