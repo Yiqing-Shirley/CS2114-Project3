@@ -56,77 +56,41 @@ We tested the model directly using JUnit tests, and all tests passed. This shows
 - **Deferred Features:** Delivery Tracking and Membership Priority are not implemented in the current version.
 
 ## Next Steps
-### Remaining MVP Work 
 
-**Priority 1: Duplicate Order Confirmation**
-- Detect when a customer submits an order with the same food name and category as an existing pending order.
-- Ask the customer whether they want to submit the duplicate.
-- Allow the customer to confirm or cancel without crashing.
-- Owner: Irmuun (View), with Anna (Model) and Aleysa (Controller).
-  
-**Priority 2: Improve Order Status Handling**
-- Verify that order status changes correctly from PENDING to IN_PROGRESS to COMPLETED.
-- Ensure that completed orders remain searchable.
-- Improve how completed orders display their queue position and orders ahead.
-- Owner: Anna (Model), Irmuun (View).
-  
-**Priority 3: Integration and Edge Case Testing**
-- Run the complete customer and employee workflow.
-- Test invalid input, empty queues, nonexistent order numbers, and duplicate orders.
-- Fix any bugs found during integration.
-- Owner: Yiqing (Integration and Testing), with all team members.
+### Remaining Work 
+
+**Priority 1: Final Verification**
+- Run the complete test suite and verify the MVP and Estimated Waiting Time feature.
+- Owner: All team members.
+
+**Priority 2: Lightning Demo and Slides**
+- Prepare a live demo showing the MVP, Estimated Waiting Time, and bad-input handling.
+- Create slides covering the system diagram, design changes, MVC reflection.
+- Owner: All team members.
+
+**Priority 3: Final Submission**
+- Each team member writes an individual reflection on MVC.
+- Submit the final source code, tests, README, and individual writeups.
+- Owner: Final Submission Yiqing, Individual writesups all members.
 
 ### Stretch Goals
-**Committed Stretch Goal: Estimated Wait Time**
+### Stretch Goal Status
 
-We plan to add an estimated wait time for each pending order. The system will calculate an estimated waiting time using the expected preparation times of the orders ahead in the queue.
-We plan to assign estimated preparation times to different food categories. For example, drinks may take less time than dinner orders.
-This feature changes the model's calculation logic and will be accessible to customers through the controller and customer view.
+**Completed: Estimated Waiting Time**
 
-**Expected Changes:**
-- `FoodQueueModel.java`
-  - Add `getEstimatedWaitTime(int orderNumber)`.
-  - Calculate estimated waiting time based on the categories of orders ahead.
+- Implemented `getEstimatedWaitTime(int orderNumber)` in `FoodQueueModel`.
+- Estimated waiting time is calculated using the preparation times of orders ahead in the queue.
+- Connected the feature to `FoodQueueController` and `CustomerView`.
+- Added JUnit tests for normal cases, invalid order numbers, and waiting time updates.
+- Owner: Anna (Model), Aleysa (Controller), Irmuun (View), Yiqing (Testing).
 
-- `FoodQueueController.java`
-  - Add `getEstimatedWaitTime(int orderNumber)` to expose the model calculation.
+**Deferred: Delivery Tracking**
 
-- `CustomerView.java`
-  - Update `trackOrderPrompt()` to display the estimated waiting time.
+- Not implemented because it requires additional delivery information and workflow changes.
 
-**Expected Unchanged Classes:**
-- `Node.java`
-- `OrderQueue.java`
-- `EmployeeView.java`
-**Owner:** Anna (Model), Aleysa (Controller), Irmuun (View), Yiqing (Integration and Testing).
+**Dropped: Membership Priority**
 
-**Deferred:**
-- Delivery Tracking not planned for Deliverable 4 because it requires additional delivery-related data and workflow.
-
-**Optional if Time Allows:**
-- Membership Priority may be considered only after the MVP and estimated wait time feature are complete. This would require changes to queue ordering and would need additional testing.
-
-### New Tests Needed
-**Duplicate Order Confirmation**
-- Submit two orders with the same food name and category.
-- Confirm the second order and verify both are added.
-- Cancel the second order and verify the queue size does not change.
-
-**Estimated Wait Time**
-- Test `getEstimatedWaitTime(int orderNumber)` with an empty queue.
-- Test a pending order with no orders ahead.
-- Test multiple pending orders with different food categories.
-- Test a nonexistent order number.
-- Test a completed order.
-- Verify that estimated waiting time updates after an order is completed.
-
-**Order Status and Integration**
-- Verify the correct status after `startNextOrder()`.
-- Verify the correct status after `completeNextOrder()`.
-- Verify that a completed order remains searchable.
-- Verify that invalid input does not crash the application.
-
-**Test Owners:** Anna (Model Tests), Yiqing (Integration and Edge-Case Tests), with support from Aleysa and Irmuun.
+- Not implemented because it would require changing FIFO queue behavior and additional testing.
 
 ## Attribution
 | Team Member | Responsibilities |
